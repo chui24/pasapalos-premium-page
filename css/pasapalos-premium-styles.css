@@ -132,6 +132,10 @@ strong {
   font-weight: var(--font-weight-bold);
 }
 
+.barista-section h2 {
+  font-family: "Times New Roman", Times, serif;
+}
+
 
 /*---------------------------------------
   SECTION               
@@ -221,7 +225,7 @@ strong {
 
 /* Sticky cuando el usuario hace scroll */
 .sticky-wrapper.is-sticky .container {
-  background: rgba(0,0,0,0.85); /* más sólido que antes */
+  background: rgba(0,0,0,0.85);
   border-radius: var(--border-radius-medium);
   padding: 15px 30px;
 }
@@ -236,9 +240,13 @@ strong {
 
 /* Contenedor dentro del navbar */
 .navbar .container {
-  background: rgba(0,0,0,0.85); /* mismo color sólido */
+  background: rgba(0,0,0,0.85);
   border-radius: var(--border-radius-medium);
   padding: 15px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navbar-brand,
@@ -247,6 +255,7 @@ strong {
   font-weight: var(--font-weight-bold);
   display: block;
   color: var(--white-color);
+  margin-right: auto;
 }
 
 .navbar .navbar-brand-image {
@@ -255,14 +264,13 @@ strong {
 
 /* Links especiales del navbar */
 .navbar-nav .nav-link.special-link {
-  color: #ffffff; /* color por defecto */
+  color: #ffffff;
   transition: color 0.3s;
 }
 
 .navbar-nav .nav-link.special-link:hover {
-  color: #E21B1B; /* color al pasar el cursor */
+  color: #E21B1B;
 }
-
 
 .navbar-brand-image {
   width: 48px;
@@ -361,14 +369,17 @@ strong {
   }
 }
 
+/* AJUSTES RESPONSIVE - Toggle alineado */
 .navbar-toggler {
   border: 0;
   padding: 0;
   cursor: pointer;
   margin: 0;
+  margin-left: 15px;
   width: 30px;
   height: 35px;
   outline: none;
+  flex-shrink: 0;
 }
 
 .navbar-toggler:focus {
@@ -427,6 +438,59 @@ strong {
   top: 8px;
 }
 
+/* MENÚ MOBILE - Items centrados cuando se despliega */
+@media screen and (max-width: 991px) {
+  .navbar-collapse {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .navbar-nav {
+    align-items: center;
+  }
+  
+  .navbar-nav .nav-item {
+    width: 100%;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 12px 20px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Asegurar que logo y toggle estén en la misma línea */
+  .navbar-brand {
+    flex: 1;
+    max-width: calc(100% - 50px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Ajustar tamaño de logo en móviles pequeños */
+  .navbar-brand-image {
+    width: 40px;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media screen and (max-width: 576px) {
+  .navbar .container {
+    padding: 12px 20px;
+  }
+  
+  .navbar-brand {
+    font-size: calc(var(--h4-font-size) * 0.85);
+  }
+  
+  .navbar-brand-image {
+    width: 35px;
+    margin-right: 8px;
+  }
+}
+
 
 /*---------------------------------------
   HERO        
@@ -438,8 +502,6 @@ strong {
   min-height: 620px;
   text-align: center;
 }
-
-
 
 .hero-section::after {
   background-color: rgba(0, 0, 0, 0.65);
@@ -453,10 +515,6 @@ strong {
   height: 350px;
   pointer-events: none;
 }
-
-
-
-
 
 @media screen and (min-width: 991px) {
   .hero-section {
@@ -485,6 +543,88 @@ strong {
   width: 100%;
   height: 100%;
   position: absolute !important;
+}
+
+
+/*---------------------------------------
+  HERO        
+-----------------------------------------*/
+.hero-section {
+  background-color: var(--dark-color);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  text-align: center;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* Asegurar que el background cubra toda la sección */
+.hero-section {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.hero-section::after {
+  background-color: transparent;
+  border-radius: var(--border-radius-medium);
+  content: "";
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-55%, -50%) rotate(45deg);
+  width: 250px;
+  height: 350px;
+  pointer-events: none;
+  
+}
+
+@media screen and (min-width: 991px) {
+  .hero-section {
+    height: 100vh;
+  }
+}
+
+/* Ajustar contenido del hero para que no quede oculto detrás del navbar */
+.hero-section .container {
+  position: relative;
+  z-index: 9;
+  padding-top: 150px;
+}
+
+/* Responsive: menos padding superior en móviles */
+@media screen and (max-width: 991px) {
+  .hero-section .container {
+    padding-top: 120px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .hero-section .container {
+    padding-top: 100px;
+  }
+}
+
+.hero-section h1 {
+  color: var(--white-color);
+}
+
+.small-text {
+  color: var(--secondary-color);
+}
+
+.hero-section .custom-border-btn {
+  border-color: transparent;
+}
+
+.hero-slides {
+  width: 100%;
+  height: 100%;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  object-fit: cover;
 }
 
 /*---------------------------------------
@@ -532,14 +672,22 @@ strong {
   color: var(--white-color);
 }
 
-/* Justificar texto de la sección SOBRE NOSOTROS con mejor legibilidad */
+/* Justificar texto de la sección SOBRE NOSOTROS - SOLO EN DESKTOP */
 .about-section p {
   text-align: justify;
   text-justify: inter-word;
   font-family: 'Times New Roman', Times, serif;
   color: var(--white-color);
-  line-height: 2.8; /* Espaciado entre líneas más cómodo */
-  letter-spacing: 0.3px; /* Ligero espaciado entre letras */
+  line-height: 2.8;
+  letter-spacing: 0.3px;
+}
+
+/* EN MÓVILES: Alinear a la izquierda para evitar espacios irregulares */
+@media screen and (max-width: 991px) {
+  .about-section p {
+    text-align: left;
+    line-height: 1.8;
+  }
 }
 
 .about-section .container {
@@ -547,8 +695,13 @@ strong {
   padding-right: 40px;
 }
 
-
-
+/* Ajustar padding del container en móviles */
+@media screen and (max-width: 768px) {
+  .about-section .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 
 .custom-video {
   border-radius: var(--border-radius-medium);
@@ -746,8 +899,8 @@ strong {
 
 .social-icon-link .social-name {
   display: block;
-  font-family: 'Great Vibes';
-  font-size: 0.9rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.8rem;
   margin-top: 1.0rem; /* espacio entre icono y nombre */
   color: var(--white-color);
   text-align: center;

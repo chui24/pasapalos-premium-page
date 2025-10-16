@@ -29,11 +29,8 @@ Cómo ver el sitio localmente
 
 2. Abrir `http://localhost:8000` en el navegador.
 
-Sugerencias y notas
+ notas
 
 - El proyecto usa Bootstrap y jQuery locales en la carpeta `js` y `css`.
 - Archivos pesados (videos, imágenes grandes) están incluidos en el repo; considera moverlos a un CDN o Git LFS si el repo crece mucho.
 
-Licencia
-
-Agrega aquí la licencia que prefieras, por ejemplo MIT.
